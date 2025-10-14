@@ -45,9 +45,7 @@ The application follows a simple yet powerful three-step pipeline:
 
 ## ▶️ Live Demo
 
-🔗 **Live Application:** [Click Here to Try the Demo](https://your-live-demo-link-here.com)
-
-*(Replace the above link once your Streamlit app is deployed — e.g., on Streamlit Cloud or Hugging Face Spaces.)*
+🔗 **Live Application:** [Click Here to Try the Demo](https://ai-powered-property-search-chatbot.streamlit.app/)
 
 ---
 
