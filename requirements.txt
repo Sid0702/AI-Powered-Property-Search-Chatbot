@@ -1,0 +1,6 @@
+streamlit
+pandas
+spacy>=3.0
+groq
+python-dotenv
+numpy

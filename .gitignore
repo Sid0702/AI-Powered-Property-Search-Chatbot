@@ -1,0 +1,26 @@
+.env
+venv
+
+components/__pycache__/
+
+core/__pycache__/
+
+
+.env
+
+Python virtual environment
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+Python cache files
+pycache/
+*.pyc
+*.pyo
+*.pyd
+
+Streamlit specific files
+.streamlit/
