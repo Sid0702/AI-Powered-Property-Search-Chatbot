@@ -19,7 +19,7 @@ with st.spinner("Loading property data..."):
 
 # --- Main App UI ---
 st.title("🤖 NoBrokerage AI Property Finder")
-st.caption("Ask me to find properties, like 'Show me 2BHKs in Pune under 1 Cr with a gym'")
+st.caption("Ask me to find properties, like 'Show me 2BHKs in Pune under 1 Cr '")
 
 # --- Session State Initialization for Chat History ---
 if "messages" not in st.session_state:
