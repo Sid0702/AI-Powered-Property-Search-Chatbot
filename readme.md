@@ -114,7 +114,7 @@ Try these example queries:
 * “Find a villa in Pune that is over 4 Cr”
 * “Ready-to-move properties in Shivajinagar”
 * “Show me properties in the Pristine02 project”
-* “2BHKs in Pune under 1 Cr with a gym”
+* “2BHKs in Pune under 1 Cr”
 
 ---
 
