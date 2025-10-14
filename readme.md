@@ -8,7 +8,7 @@ This chatbot allows users to search for properties using **natural language quer
 ## 🚀 Core Features
 
 - **Natural Language Understanding:** Parses complex user queries like  
-  > “Show me 2BHKs in Pune under 1 Cr with a gym.”
+  > “Show me 2BHKs in Pune under 1 Cr.”
 - **Dynamic Filtering:** Extracts filters for city, locality, budget, property type, project name, and amenities.
 - **Intelligent Summaries:** Provides human-like summaries of search results or suggestions if no matches are found.
 - **Interactive UI:** A clean, GPT-style chat interface built with Streamlit.
