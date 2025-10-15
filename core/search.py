@@ -5,7 +5,7 @@ def find_properties(df, filters):
     Filters the DataFrame using a robust boolean indexing method to ensure all
     filters are strictly and correctly applied.
     """
-    if df.empty or filters.get("impossible_query"):
+    if df.empty or filters.get("invalid_location"):
         return pd.DataFrame()
 
     # Start with a clean copy of the DataFrame to filter
@@ -46,4 +46,4 @@ def find_properties(df, filters):
             if 'amenities' in results.columns:
                 results = results[results['amenities'].str.contains(amenity, case=False, na=False)]
             
-    return results.head(5) # Return top 5 matches
+    return results 

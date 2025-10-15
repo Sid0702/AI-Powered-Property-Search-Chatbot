@@ -35,7 +35,7 @@ def create_llm_prompt(query, known_values):
     IMPORTANT INSTRUCTIONS:
     1.  **Be Precise:** Your ONLY output must be a valid JSON object. Do not add any extra text or explanations.
     2.  **Project Name vs. Location:** A project name is NOT a location. If the user query includes a name from the "Valid Project Names" list, extract it as `project_name`. DO NOT treat it as a location.
-    3.  **Location Check:** If the user's query contains a location (city or locality) that is NOT in the "Valid Cities" or "Valid Localities" lists, you MUST return `{{"impossible_query": true}}`.
+    3.  **Location Check:** If the user's query contains a location (e.g., "dehradun") that is NOT in the "Valid Cities" or "Valid Localities" lists, you MUST extract all other possible filters from the query, but also add an `invalid_location` key to the JSON with the name of the unsupported location.
     4.  **Budget Analysis:** Analyze terms like "under", "over", "less than", "more than" to set "min" or "max" values in a "budget" object. The value must be an integer in Rupees.
     5.  **Amenity Extraction:** If the user mentions amenities like "gym", "pool", "security", etc., you MUST include them in an "amenities" list in the JSON.
     6.  **Status Detection:** Look for terms like "ready to move" or "ready" and set a "status" key to "ready_to_move".
@@ -65,10 +65,15 @@ def create_llm_prompt(query, known_values):
       "project_name": "pristine02"
     }}
 
-    User Query: "Dehradun property"
+    User Query: "ready 3bhk in dehradun under 1.2 cr"
     JSON Response:
     {{
-      "impossible_query": true
+      "status": "ready_to_move",
+      "property_type": "3bhk",
+      "budget": {{
+        "max": 12000000
+      }},
+      "invalid_location": "dehradun"
     }}
     
     ---

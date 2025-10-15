@@ -3,6 +3,7 @@ from core.data_loader import load_data, get_known_values
 from core.nlu import extract_filters_with_groq # Use the new Groq NLU function
 from core.search import find_properties
 from components.ui import render_property_card
+from core.summarizer import generate_summary_from_results, generate_not_found_summary
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -59,18 +60,29 @@ if prompt := st.chat_input("e.g., 3bhk apartment in Ravet over 1 crore..."):
                 st.session_state.messages.append({"role": "assistant", "content": response_summary})
 
             elif not results_df.empty:
-                response_summary = f"I found {len(results_df)} properties matching your criteria. Here are the top results:"
+                # --- NEW: Generate the intelligent summary FIRST ---
+                response_summary = generate_summary_from_results(results_df, filters)
                 st.write(response_summary)
-                
-                # Display property cards for the results
-                for _, row in results_df.iterrows():
+
+                # --- NEW: Limit the results for display AFTER analysis ---
+                # We use head(5) here now, instead of in the search.py file.
+                results_to_display = results_df.head(5)
+
+                # Display property cards for the limited results
+                st.write("Here are the top matching properties for you:")
+                for _, row in results_to_display.iterrows():
                     render_property_card(row)
-                
-                # Add the full response (text + data) to session state
-                st.session_state.messages.append({"role": "assistant", "content": response_summary, "results": results_df})
+
+                # Add the full response (summary + display data) to session state
+                st.session_state.messages.append({
+                    "role": "assistant", 
+                    "content": response_summary, 
+                    "results": results_to_display
+                })
             
             else:
                 # This handles both "impossible_query" and regular no-match scenarios
-                fallback_response = "I couldn't find any properties matching your exact criteria. You could try being less specific or rephrasing your request."
+                # --- NEW: Generate a specific "not found" message using the filters ---
+                fallback_response = generate_not_found_summary(filters)
                 st.write(fallback_response)
                 st.session_state.messages.append({"role": "assistant", "content": fallback_response})

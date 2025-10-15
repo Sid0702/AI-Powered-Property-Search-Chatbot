@@ -36,7 +36,7 @@ The application follows a simple yet powerful three-step pipeline:
    The **Llama 3 model** extracts key entities like *location*, *budget*, *property type*, and *amenities* and returns a structured JSON.
 
 2. **Search & Filtering:**  
-   The structured JSON is used to filter a **Pandas DataFrame** loaded from the project’s local CSV (`4_master_properties.csv`).
+   The structured JSON is used to filter a **Pandas DataFrame** loaded from the project’s local CSV (`master_properties.csv`).
 
 3. **UI & Summarization:**  
    The chatbot displays **property cards** and generates a **dynamic summary** of the results in the chat interface.
@@ -130,7 +130,8 @@ Try these example queries:
 │   ├── __init__.py     # Makes 'core' a Python package
 │   ├── data_loader.py  # Loads and preprocesses CSV data
 │   ├── nlu.py          # Handles NLU with Groq API
-│   └── search.py       # Filters DataFrame based on NLU output
+│   ├── search.py       # Filters DataFrame based on NLU output
+│   └── summarizer.py   # Used for Summarizing the response
 ├── data/               # Contains the property CSV file
 │   ├── master_properties.csv
 │   ├── project.csv
